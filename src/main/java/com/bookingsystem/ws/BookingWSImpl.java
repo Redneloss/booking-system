@@ -11,19 +11,20 @@ import javax.ws.rs.core.MediaType;
 import com.bookingsystem.model.Booking;
 import com.bookingsystem.resourses.BookingResponse;
 import com.bookingsystem.services.BookingService;
+import com.bookingsystem.services.BookingServiceImpl;
 
 @Path("/booking")
 public class BookingWSImpl implements BookingWS {
-	
-	private BookingService service;
+
+	private BookingService service = new BookingServiceImpl();
 
 	@Override
 	@POST
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public BookingResponse create(Booking booking) {
-		
-		//service.createBooking(booking.getRoomNumber(), booking.getClientName());
+
+		service.createBooking(booking.getRoomNumber(), booking.getClientName());
 		BookingResponse response = new BookingResponse();
 		response.setStatus("Successful");
 		response.setMessage(
